@@ -1,0 +1,24 @@
+--[[
+     Made by ArasOfficial#8439
+     When you have been kicked, this will rejoin the server.
+     If you want to remove script, execute this: game.CoreGui.AutoRejoin:Destroy()
+     -- Source --
+--]]
+
+-------------------------------------------------------------------------
+if game.CoreGui:FindFirstChild('AutoRejoin') then
+	game.CoreGui.AutoRejoin:Destroy()
+end
+
+local AutoRejoin = Instance.new("ScreenGui")
+AutoRejoin.Name = "AutoRejoin"
+AutoRejoin.Parent = game.CoreGui
+AutoRejoin.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+AutoRejoin.ResetOnSpawn = false
+local function KNNVW_fake_script()
+	local script = Instance.new('LocalScript', AutoRejoin)
+	game:GetService("GuiService").ErrorMessageChanged:Connect(function()
+		game:GetService("TeleportService"):Teleport(game.PlaceId)
+	end); 
+end
+coroutine.wrap(KNNVW_fake_script)()
